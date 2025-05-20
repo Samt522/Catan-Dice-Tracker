@@ -1,8 +1,6 @@
 # This is just to be used to calculate the frequency of numbers rolled in a game of catan
-# Importing pandas and matplotlib
-import pandas as pd
-import matplotlib as plt
-
+# Importing matplotlib
+import matplotlib.pyplot as plt
 
 exit_code = "0"
 num_array = []
@@ -11,7 +9,7 @@ frequency = {}
 
 outfile = open("catandice.txt","w")
                
-print("Catan Dice Thingy V0.1")
+print("Catan Dice Thingy V0.2")
 print("To use, simply enter a number from 2-12")
 print("When done type 00")
 while exit_code != 1:
@@ -43,6 +41,17 @@ while exit_code != 1:
             if count > max_count:
                 max_count = count
                 most_rolled = num
-        # Final note, if im going to show the other numbers, i'm better off using pandas or a library for the math
         print(f"The most rolled number was {most_rolled} it was rolled {max_count} times")
+        
+        # A nice little bar graph shows the numbers better
+        # Need to readjust so it shows everything just right but ok for now
+        plt.title("Total Catan Dice Rolls")
+        labels = list(frequency.keys())
+        counts = list(frequency.values())
+        plt.xlabel("Dice Number")
+        plt.ylabel("Frequency")
+        plt.xticks(range(2, 12))
+        plt.bar(labels,counts)
+        plt.show()
+        
         exit_code = 1
